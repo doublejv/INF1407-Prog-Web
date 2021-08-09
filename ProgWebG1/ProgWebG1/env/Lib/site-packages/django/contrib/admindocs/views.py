@@ -1,5 +1,6 @@
 import inspect
 from importlib import import_module
+from inspect import cleandoc
 from pathlib import Path
 
 from django.apps import apps
@@ -127,7 +128,7 @@ class ViewIndexView(BaseAdminDocsView):
                 'full_name': get_view_name(func),
                 'url': simplify_regex(regex),
                 'url_name': ':'.join((namespace or []) + (name and [name] or [])),
-                'namespace': ':'.join((namespace or [])),
+                'namespace': ':'.join(namespace or []),
                 'name': name,
             })
         return super().get_context_data(**{**kwargs, 'views': views})
@@ -257,7 +258,7 @@ class ModelDetailView(BaseAdminDocsView):
                     continue
                 verbose = func.__doc__
                 verbose = verbose and (
-                    utils.parse_rst(utils.trim_docstring(verbose), 'model', _('model:') + opts.model_name)
+                    utils.parse_rst(cleandoc(verbose), 'model', _('model:') + opts.model_name)
                 )
                 # Show properties and methods without arguments as fields.
                 # Otherwise, show as a 'method with arguments'.
@@ -307,7 +308,7 @@ class ModelDetailView(BaseAdminDocsView):
             })
         return super().get_context_data(**{
             **kwargs,
-            'name': '%s.%s' % (opts.app_label, opts.object_name),
+            'name': opts.label,
             'summary': title,
             'description': body,
             'fields': fields,
@@ -331,8 +332,7 @@ class TemplateDetailView(BaseAdminDocsView):
             for index, directory in enumerate(default_engine.dirs):
                 template_file = Path(safe_join(directory, template))
                 if template_file.exists():
-                    with template_file.open() as f:
-                        template_contents = f.read()
+                    template_contents = template_file.read_text()
                 else:
                     template_contents = ''
                 templates.append({
