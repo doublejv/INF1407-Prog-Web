@@ -2,17 +2,6 @@ from sys import argv, exit
 from socket import socket, AF_INET, SOCK_STREAM
 import _thread
 
-#class WebServer(BaseHTTPRequestHandler):
-#    def do_GET(self):
-#        self.send_response(200)
-#        self.send_header("Content-type", "text/html")
-#        self.end_headers()
-#        self.wfile.write(bytes("<html><head><title>G1 - Simple Web Server</title></head>", "utf-8"))
-#        self.wfile.write(bytes("<p>Request: %s</p>" % self.path, "utf-8"))
-#        self.wfile.write(bytes("<body>", "utf-8"))
-#        self.wfile.write(bytes("<p>Simple Web server for INF1407 G1.</p>", "utf-8"))
-#        self.wfile.write(bytes("</body></html>", "utf-8"))
-
 def requestHandler (connection, client):
     print(f"Conectado por {client}")
 
