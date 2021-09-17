@@ -1,6 +1,7 @@
 from sys import argv, exit
 from socket import socket, AF_INET, SOCK_STREAM
 import _thread
+import databaseconfig as cfg
 
 def requestHandler (connection, client):
     print(f"Servidor conectado com {client}")
@@ -69,6 +70,8 @@ def requestHandler (connection, client):
     connection.send("\n\n".encode("utf-8"))
     connection.send(body)
 
+    #connect(cfg.mysql["host"], cfg.mysql["user"], cfg.mysql["password"])
+
     print(message)
 
     connection.close()
@@ -80,9 +83,10 @@ def main():
     if len(argv) == 3:
         hostName = argv[1] # Servidor sendo hospedado em endereço IP pedido pelo usuário
         serverPort = int(argv[2]) # Porta na qual o servidor está aberto
+    # Se não recebido um host e uma porta utilizamos as default salvas no arquivo de configuração
     else:
-        hostName = "localhost" # Servidor sendo hospedado localmente
-        serverPort = 8080 # Porta default 8080
+        hostName = cfg.connectionData["host"] # Servidor sendo hospedado localmente
+        serverPort = cfg.connectionData["port"] # Porta default 8080
 
     # Criar um TCP socket
     tcpSocket = socket(AF_INET, SOCK_STREAM)

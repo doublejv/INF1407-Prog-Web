@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="databaseconfig.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="G1_PythonWebServer.py" />
   </ItemGroup>
   <ItemGroup>
