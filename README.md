@@ -19,6 +19,7 @@ Você pode rodar o servidor localmente na sua máquina e acessar algumas página
 * party_parrot.gif
 
 ### Testes
+* O servidor é hospedado localmente corretamente e serve na porta requisitada corretamente
 * O servidor serve corretamente páginas HMTL, imagens e GIFs quando especificado o arquivo na URL
 * O servidor serve corretamente a página default se nenhuma página foi requisitada pelo usuário
 * O servidor consegue servir mais de um cliente assíncronamente, usando threads
