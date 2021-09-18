@@ -23,3 +23,4 @@ Você pode rodar o servidor localmente na sua máquina e acessar algumas página
 * O servidor serve corretamente páginas HMTL, imagens e GIFs quando especificado o arquivo na URL
 * O servidor serve corretamente a página default se nenhuma página foi requisitada pelo usuário
 * O servidor consegue servir mais de um cliente assíncronamente, usando threads
+* O servidor consegue utilizar as variaveis armazenadas no arquivo de configuração corretamente
