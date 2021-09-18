@@ -1,7 +1,7 @@
 from sys import argv, exit
 from socket import socket, AF_INET, SOCK_STREAM
 import _thread
-import databaseconfig as cfg
+import configfile as cfg
 
 def requestHandler (connection, client):
     print(f"Servidor conectado com {client}")
